@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  Flights
+{% endblock %}
+
+{% block body %}
+  <h1>Book a Flight</h1>
+
+  <form action="{{ url_for('book') }}" method="post">
+
+      <div class="form-group">
+          <select class="form-control" name="flight_id"> # class="form-control" is a way of telling bootstrap this is something I want you to format nicely
+                                                          # name = "flight_id" means I gave this select dropdown a name, because later on in my python code
+                                                          # I'll want to reference it, and when I reference it, I'll want to reference it by its name.
+            {% for flight in flights %}
+              <option value="{{ flight.id }}">{{ flight.origin }} to {{ flight.destination }}</option>
+            {% endfor %}
+          </select>
+      </div>
+
+      <div class="form-group">
+          <input class="form-control" name="name" placeholder="Passengers Name">
+      </div>
+
+      <div class="form-group">
+          <button class="btn btn-primary">Book Flight</button>
+      </div>
+
+</form>
+
+{% endblock %}
